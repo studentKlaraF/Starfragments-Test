@@ -45,6 +45,7 @@ namespace SeminarskaNaloga.Controllers
         }
 
         // GET: Trgovina/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();

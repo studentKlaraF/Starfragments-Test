@@ -1,0 +1,2 @@
+INSERT INTO dbo.Trgovina(TrgovinaId,img,ime,lastnik)
+VALUES (1,'https://i.etsystatic.com/isla/60899a/34002509/isla_75x75.34002509_cp6g50be.jpg?version=0','The cat shop','c02ce5da-cfce-4fb1-a398-973271d73f40')

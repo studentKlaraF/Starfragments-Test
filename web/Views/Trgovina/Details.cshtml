@@ -4,27 +4,30 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
+<div class="col-md-4 offset-md-4 text-center">
     <h4>Trgovina</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.img)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.img)
-        </dd>
-        <dt class = "col-sm-2">
+        <div class="col-md-4">
+        <dd>
+            <div>
+                <img src="@Html.DisplayFor(model => model.img)" style="max-width:200px">
+            </div>
+            
+        </dd></div>
+        <div class="col-md-8">
+        <dt>
             @Html.DisplayNameFor(model => model.ime)
         </dt>
-        <dd class = "col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.ime)
         </dd>
+        </div>
     </dl>
-</div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.TrgovinaId">Edit</a> |
+    @if(User.IsInRole("Lastnik") || User.IsInRole("Admin"))
+    {
+    <a asp-action="Edit" asp-route-id="@Model?.TrgovinaId">Edit</a>
+    }
     <a asp-action="Index">Back to List</a>
 </div>

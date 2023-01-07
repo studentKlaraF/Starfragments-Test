@@ -10,5 +10,10 @@ public class AppUser : IdentityUser
      public string? mail { get; set; }
 
      public List<Narocilo>? Narocila { get; set; }
-     public Trgovina? Trgovina { get; set; }
+     public string? Trgovina { get; set; }
+    public int? TrgovinaId { get; set;}
+    public static implicit operator string(AppUser v)
+    {
+        throw new NotImplementedException();
+    }
 }

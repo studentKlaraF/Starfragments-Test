@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace SeminarskaNaloga.Migrations
+namespace web.Migrations
 {
-    public partial class Initial : Migration
+    public partial class TrgovinaUpdate10 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

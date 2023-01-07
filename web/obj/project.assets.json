@@ -10260,11 +10260,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fajdi\\Desktop\\Vaje 3\\SeminarskaNaloga\\web\\SeminarskaNaloga.csproj",
-      "projectName": "SeminarskaNaloga",
-      "projectPath": "C:\\Users\\fajdi\\Desktop\\Vaje 3\\SeminarskaNaloga\\web\\SeminarskaNaloga.csproj",
+      "projectUniqueName": "C:\\Users\\fajdi\\Desktop\\Starfragments-Test\\web\\web.csproj",
+      "projectName": "web",
+      "projectPath": "C:\\Users\\fajdi\\Desktop\\Starfragments-Test\\web\\web.csproj",
       "packagesPath": "C:\\Users\\fajdi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fajdi\\Desktop\\Vaje 3\\SeminarskaNaloga\\web\\obj\\",
+      "outputPath": "C:\\Users\\fajdi\\Desktop\\Starfragments-Test\\web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

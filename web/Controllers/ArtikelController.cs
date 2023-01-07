@@ -8,16 +8,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SeminarskaNaloga.Data;
 using SeminarskaNaloga.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace SeminarskaNaloga.Controllers
 {
     public class ArtikelController : Controller
     {
         private readonly TrgovinaContext _context;
+        private readonly UserManager<AppUser> _usermanager;
 
-        public ArtikelController(TrgovinaContext context)
+        public ArtikelController(TrgovinaContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _usermanager = userManager;
         }
 
         // GET: Artikel
@@ -44,6 +47,12 @@ namespace SeminarskaNaloga.Controllers
 
             return View(artikel);
         }
+        
+        [Authorize]
+        public async Task<IActionResult> ForAdmin()
+        {
+            return View(await _context.Artikel.ToListAsync());
+        }
 
         // GET: Artikel/Create
         [Authorize]
@@ -58,10 +67,15 @@ namespace SeminarskaNaloga.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("ArtikelId,img,naziv,cena,opis")] Artikel artikel)
-        {
+        public async Task<IActionResult> Create([Bind("img,naziv,cena,opis")] Artikel artikel)
+        {   
+            var trenutniUporabnik = await _usermanager.GetUserAsync(User); //zapiše kdo je prijavljen v aplikacijo
+            string imeTrg = trenutniUporabnik.Trgovina; 
+
             if (ModelState.IsValid)
             {
+                artikel.lastnik = trenutniUporabnik;
+                artikel.trgovina = trenutniUporabnik.Trgovina;
                 _context.Add(artikel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

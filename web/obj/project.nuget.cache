@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5/Sou5DnLxGfBaiCEU4MPEAfQcg0mBJYw5p4jO6fhsQfn4aUfVWdffh3RqohfAExg2mNTDWH2ttafxBKBvePRg==",
+  "dgSpecHash": "aBAuedx3+1zSAWDXX/kfHebAI2iSzm79Q7ck3mqtqUlyvGrYeHRVYHZpOfTjLofcAW5fhhmB06+4cS+6Ba8T9g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fajdi\\Desktop\\Vaje 3\\SeminarskaNaloga\\web\\SeminarskaNaloga.csproj",
+  "projectFilePath": "C:\\Users\\fajdi\\Desktop\\Starfragments-Test\\web\\web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fajdi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\fajdi\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

@@ -1,0 +1,81 @@
+@model IEnumerable<SeminarskaNaloga.Models.Trgovina>
+
+@{
+    ViewData["Title"] = "Trgovine";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1>Trgovine</h1>
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>@Html.DisplayNameFor(model =>model.img)</th>
+                    <th>@Html.DisplayNameFor(model =>model.ime)</th>
+                    <th>@Html.DisplayNameFor(model =>model.lastnik)</th>
+                    <th>Urejanje</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-square" src="@item.img" alt="@item.ime" style="max-width: 150px;"/>
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem =>item.ime)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem =>item.lastnik)
+                        </td>
+                        
+                        <td class="align-middle">
+                            <a asp-action="Edit" asp-route-id="@item.TrgovinaId" class="btn btn-outline-primary"><i class="bi bi-pencil-square">Uredi</i></a>
+                            <a asp-action="Details" asp-route-id="@item.TrgovinaId" class="btn btn-outline-info"><i class="bi bi-eye">Podrobnosti</i></a>
+                            <a asp-action="Delete" asp-route-id="@item.TrgovinaId" class="btn btn-danger"><i class="bi bi-trash">Izbriši</i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!--
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.img)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.img)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TrgovinaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TrgovinaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TrgovinaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>-->

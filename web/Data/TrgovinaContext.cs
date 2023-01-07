@@ -16,10 +16,13 @@ namespace SeminarskaNaloga.Data
         public DbSet<Trgovina> Trgovina { get; set; }
         public DbSet<vrstaArtikla> vrstaArtikla { get; set; }
         public DbSet<Ocena> Ocena { get; set; }
+        public DbSet<Kosarica> Kosarica { get; set; }
+        public object ArtikliKosarice { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Kosarica>().ToTable("Kosarica");
             modelBuilder.Entity<Artikel>().ToTable("Artikel");
             modelBuilder.Entity<Narocilo>().ToTable("Narocilo");
             modelBuilder.Entity<Lastnik>().ToTable("Lastnik");

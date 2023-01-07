@@ -1,0 +1,58 @@
+@model IEnumerable<SeminarskaNaloga.Models.Artikel>
+
+@{
+    ViewData["Title"] = "Admin view";
+}
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h1>Izdelki na voljo</h1>
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>@Html.DisplayNameFor(model =>model.img)</th>
+                    <th>@Html.DisplayNameFor(model =>model.naziv)</th>
+                    <th>@Html.DisplayNameFor(model =>model.cena)</th>
+                    <th>@Html.DisplayNameFor(model =>model.opis)</th>
+                    <th>@Html.DisplayNameFor(model =>model.vrstaArtikla)</th>
+                    <th>@Html.DisplayNameFor(model =>model.trgovina)</th>
+                    <th>Urejanje</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-square" src="@item.img" alt="@item.naziv" style="max-width: 150px;"/>
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem =>item.naziv)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem =>item.cena) €
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem =>item.opis)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem =>item.vrstaArtikla)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem =>item.trgovina)
+                        </td>
+                        <td class="align-middle">
+                            <a asp-action="Edit" asp-route-id="@item.ArtikelId" class="btn btn-outline-primary"><i class="bi bi-pencil-square">Uredi</i></a>
+                            <a asp-action="Details" asp-route-id="@item.ArtikelId" class="btn btn-outline-info"><i class="bi bi-eye">Podrobnosti</i></a>
+                            <a asp-action="Delete" asp-route-id="@item.ArtikelId" class="btn btn-danger"><i class="bi bi-trash">Izbriši</i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="text-white" style="right:25px;bottom:25px;position:fixed;">
+    <a asp-controller="Artikel" asp-action="Create" class="btn btn-success"> <i>Dodaj nov artikel</i></a>
+</div>

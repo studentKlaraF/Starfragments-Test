@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SeminarskaNaloga.Migrations
+namespace web.Migrations
 {
-    public partial class Initialize : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,12 +24,25 @@ namespace SeminarskaNaloga.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Kosarica",
+                columns: table => new
+                {
+                    KosaricaId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Kosarica", x => x.KosaricaId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Trgovina",
                 columns: table => new
                 {
-                    TrgovinaId = table.Column<int>(type: "int", nullable: false),
+                    TrgovinaId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     img = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ime = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    lastnik = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -79,7 +92,8 @@ namespace SeminarskaNaloga.Migrations
                     ime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     priimek = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     mail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TrgovinaId = table.Column<int>(type: "int", nullable: true),
+                    Trgovina = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    trgovincaTrgovinaId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -99,8 +113,8 @@ namespace SeminarskaNaloga.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Trgovina_TrgovinaId",
-                        column: x => x.TrgovinaId,
+                        name: "FK_AspNetUsers_Trgovina_trgovincaTrgovinaId",
+                        column: x => x.trgovincaTrgovinaId,
                         principalTable: "Trgovina",
                         principalColumn: "TrgovinaId");
                 });
@@ -121,6 +135,41 @@ namespace SeminarskaNaloga.Migrations
                         column: x => x.TrgovinaId,
                         principalTable: "Trgovina",
                         principalColumn: "TrgovinaId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Artikel",
+                columns: table => new
+                {
+                    ArtikelId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    img = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    naziv = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    cena = table.Column<double>(type: "float", nullable: false),
+                    opis = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    vrstaArtiklaId = table.Column<int>(type: "int", nullable: true),
+                    trgovina = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    lastnikId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TrgovinaId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Artikel", x => x.ArtikelId);
+                    table.ForeignKey(
+                        name: "FK_Artikel_AspNetUsers_lastnikId",
+                        column: x => x.lastnikId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Artikel_Trgovina_TrgovinaId",
+                        column: x => x.TrgovinaId,
+                        principalTable: "Trgovina",
+                        principalColumn: "TrgovinaId");
+                    table.ForeignKey(
+                        name: "FK_Artikel_vrstaArtikla_vrstaArtiklaId",
+                        column: x => x.vrstaArtiklaId,
+                        principalTable: "vrstaArtikla",
+                        principalColumn: "vrstaArtiklaId");
                 });
 
             migrationBuilder.CreateTable(
@@ -213,51 +262,29 @@ namespace SeminarskaNaloga.Migrations
                 columns: table => new
                 {
                     NarociloId = table.Column<int>(type: "int", nullable: false),
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ArtikelKosariceArtikelId = table.Column<int>(type: "int", nullable: true),
                     kolicina = table.Column<int>(type: "int", nullable: false),
-                    skupnaCena = table.Column<double>(type: "float", nullable: false)
+                    KosaricaId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Narocilo", x => x.NarociloId);
                     table.ForeignKey(
+                        name: "FK_Narocilo_Artikel_ArtikelKosariceArtikelId",
+                        column: x => x.ArtikelKosariceArtikelId,
+                        principalTable: "Artikel",
+                        principalColumn: "ArtikelId");
+                    table.ForeignKey(
                         name: "FK_Narocilo_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Artikel",
-                columns: table => new
-                {
-                    ArtikelId = table.Column<int>(type: "int", nullable: false),
-                    img = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    naziv = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    cena = table.Column<double>(type: "float", nullable: false),
-                    opis = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    vrstaArtiklaId = table.Column<int>(type: "int", nullable: true),
-                    NarociloId = table.Column<int>(type: "int", nullable: true),
-                    TrgovinaId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Artikel", x => x.ArtikelId);
                     table.ForeignKey(
-                        name: "FK_Artikel_Narocilo_NarociloId",
-                        column: x => x.NarociloId,
-                        principalTable: "Narocilo",
-                        principalColumn: "NarociloId");
-                    table.ForeignKey(
-                        name: "FK_Artikel_Trgovina_TrgovinaId",
-                        column: x => x.TrgovinaId,
-                        principalTable: "Trgovina",
-                        principalColumn: "TrgovinaId");
-                    table.ForeignKey(
-                        name: "FK_Artikel_vrstaArtikla_vrstaArtiklaId",
-                        column: x => x.vrstaArtiklaId,
-                        principalTable: "vrstaArtikla",
-                        principalColumn: "vrstaArtiklaId");
+                        name: "FK_Narocilo_Kosarica_KosaricaId",
+                        column: x => x.KosaricaId,
+                        principalTable: "Kosarica",
+                        principalColumn: "KosaricaId");
                 });
 
             migrationBuilder.CreateTable(
@@ -288,9 +315,9 @@ namespace SeminarskaNaloga.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Artikel_NarociloId",
+                name: "IX_Artikel_lastnikId",
                 table: "Artikel",
-                column: "NarociloId");
+                column: "lastnikId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Artikel_TrgovinaId",
@@ -335,9 +362,9 @@ namespace SeminarskaNaloga.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_TrgovinaId",
+                name: "IX_AspNetUsers_trgovincaTrgovinaId",
                 table: "AspNetUsers",
-                column: "TrgovinaId");
+                column: "trgovincaTrgovinaId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -355,6 +382,16 @@ namespace SeminarskaNaloga.Migrations
                 name: "IX_Narocilo_AppUserId",
                 table: "Narocilo",
                 column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Narocilo_ArtikelKosariceArtikelId",
+                table: "Narocilo",
+                column: "ArtikelKosariceArtikelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Narocilo_KosaricaId",
+                table: "Narocilo",
+                column: "KosaricaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ocena_AppUserId",
@@ -388,22 +425,25 @@ namespace SeminarskaNaloga.Migrations
                 name: "Lastnik");
 
             migrationBuilder.DropTable(
+                name: "Narocilo");
+
+            migrationBuilder.DropTable(
                 name: "Ocena");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Kosarica");
+
+            migrationBuilder.DropTable(
                 name: "Artikel");
 
             migrationBuilder.DropTable(
-                name: "Narocilo");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "vrstaArtikla");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Trgovina");

@@ -2,6 +2,8 @@ using SeminarskaNaloga.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using SeminarskaNaloga.Models;
+using SeminarskaNaloga.Data.interfaces;
+using SeminarskaNaloga.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("Azure");
@@ -15,6 +17,16 @@ builder.Services.Configure<IdentityOptions>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
 });
+
+builder.Services.AddScoped<IArtikelRepository, ArtikelRepository>();
+
+builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+builder.Services.AddScoped(Sp => Kosarica.GetKosarica(Sp));
+
+builder.Services.AddMvc();
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+
 
 builder.Services.AddDbContext<TrgovinaContext>(options =>
     options.UseSqlServer(connectionString));
@@ -33,11 +45,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 app.UseAuthentication();
 app.MapRazorPages();
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

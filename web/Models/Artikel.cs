@@ -18,10 +18,6 @@ public class Artikel
 	public double cena { get; set; }
 	[Display(Name="Opis")]
 	public string opis { get; set; }
-	[Display(Name="Vrsta izdelka")]
-	public vrstaArtikla vrstaArtikla { get; set;}
-	[Display(Name="Ocene")]
-	public List<Ocena> ocene { get; set; }
 	[Display(Name="Trgovina")]
 	public string trgovina { get; set; }
 	public AppUser? lastnik { get; set; }

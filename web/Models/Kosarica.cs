@@ -3,18 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Authorization;
 using SeminarskaNaloga.Data;
 namespace SeminarskaNaloga.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 public class Kosarica
 {
     private readonly TrgovinaContext _appDbContext;
 
     private Kosarica(TrgovinaContext appDbContext){
-            
+        _appDbContext = appDbContext;
     }
 
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public string KosaricaId { get; set; }
-    public List<Narocilo> ArtikliKosarice { get; set; }
+    public List<ArtikelKosarice> ArtikliKosarice { get; set; }
 
     public static Kosarica GetKosarica(IServiceProvider services){
         ISession session = services.GetRequiredService<IHttpContextAccessor>()?
@@ -28,27 +30,78 @@ public class Kosarica
         return new Kosarica(context){KosaricaId = kosaraId};
     }
 
-    /*
-    public void dodaj(Artikel artikel, int kolicina){
-        var ArtikelKosarice = _appDbContext.ArtikliKosarice.SingleOrDefault(
-            s => s.Artikel.ArtikelId == Artikel.ArtikelId && s.KosaricaId = KosaricaId
-        )
+    public void dodaj(Artikel artikel, int kolicina)
+    {
+        var ArtikelKosarice = _appDbContext.ArtikelKosarice.SingleOrDefault(
+            s => s.ArtikelKosare.ArtikelId == artikel.ArtikelId && s.KosaricaId == KosaricaId
+        );
 
-        if(ArtikelKosarice == null){
-            ArtikelKosarice = new Narocilo
+        if(ArtikelKosarice == null)
+        {
+            ArtikelKosarice = new ArtikelKosarice
             {
                 KosaricaId = KosaricaId,
-                ArtikelKosarice = artikel,
+                ArtikelKosare = artikel,
                 kolicina = 1
             };
 
-            _appDbContext.ArtikliKosarice.Add(ArtikelKosarice);
+            _appDbContext.ArtikelKosarice.Add(ArtikelKosarice);
         }
         else
         {
             ArtikelKosarice.kolicina++;
         }
         _appDbContext.SaveChanges();
-    }*/
+    }
 
+    public int odstrani(Artikel artikel)
+    {
+        var ArtikelKosarice = _appDbContext.ArtikelKosarice.SingleOrDefault(
+            s => s.ArtikelKosare.ArtikelId == artikel.ArtikelId && s.KosaricaId == KosaricaId
+        );
+
+        var localAmount = 0;
+
+        if(ArtikelKosarice != null)
+        {
+            if(ArtikelKosarice.kolicina > 1)
+            {
+                ArtikelKosarice.kolicina--;
+                localAmount = ArtikelKosarice.kolicina;
+            }
+            else
+            {
+                _appDbContext.ArtikelKosarice.Remove(ArtikelKosarice);
+            }
+        }
+
+        _appDbContext.SaveChanges();
+
+        return localAmount;
+    }
+
+    public List<ArtikelKosarice> getArtikelKosarice()
+    {
+        return ArtikliKosarice ??
+               (ArtikliKosarice =
+                   _appDbContext.ArtikelKosarice.Where(c => c.KosaricaId == KosaricaId)
+                       .Include(s => s.ArtikelKosare)
+                       .ToList());
+    }
+
+    public void clearKosarica(){
+        var kosaricaItems = _appDbContext
+            .ArtikelKosarice
+            .Where(cart => cart.KosaricaId == KosaricaId);
+
+        _appDbContext.ArtikelKosarice.RemoveRange(kosaricaItems);
+
+        _appDbContext.SaveChanges();
+    }
+
+    public double GetKosaricaSkupaj(){
+        var skupaj = _appDbContext.ArtikelKosarice.Where(c => c.KosaricaId == KosaricaId)
+            .Select(c => c.ArtikelKosare.cena * c.kolicina).Sum();
+        return skupaj;
+    }
 }

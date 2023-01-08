@@ -84,7 +84,6 @@ namespace SeminarskaNaloga.Controllers
         }
 
         // GET: Trgovina/Edit/5
-        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {   var trenutniUporabnik = await _usermanager.GetUserAsync(User); //zapiše kdo je prijavljen v aplikacijo
             if (trenutniUporabnik.TrgovinaId==id && (id == null || _context.Trgovina == null))

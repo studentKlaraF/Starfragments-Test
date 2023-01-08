@@ -32,7 +32,7 @@
                         <li class="nav-item" style="padding: 2%;">
                             <button class="btn btn-primary nav-link" style="background-color: #530961;color:white" type="button"><a asp-controller="Trgovina" asp-action="Index" style="text-decoration: none;color:white">Trgovine</a></button>
                         </li>
-                        @if(User.IsInRole("Lastnik"))
+                        @if(User.IsInRole("Admin"))
                         {
                         <li style="padding: 2%;">
                             <div class="dropdown">
@@ -44,6 +44,10 @@
                             </div>
                         </li>
                         }
+                        <li>
+                            @await Component.InvokeAsync("PovzetekKosarice")
+                        </li>
+                        
                     </ul>
                     <!--
                     <form class="form-inline my-2 my-lg-0" asp-controller="Izdelki" asp-action="Filter" style="padding-right: 25px;">

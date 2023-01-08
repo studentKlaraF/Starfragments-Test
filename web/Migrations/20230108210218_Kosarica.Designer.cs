@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SeminarskaNaloga.Data;
 
@@ -11,9 +12,10 @@ using SeminarskaNaloga.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(TrgovinaContext))]
-    partial class TrgovinaContextModelSnapshot : ModelSnapshot
+    [Migration("20230108210218_Kosarica")]
+    partial class Kosarica
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -300,35 +302,6 @@ namespace web.Migrations
                     b.ToTable("ArtikelKosarice", (string)null);
                 });
 
-            modelBuilder.Entity("SeminarskaNaloga.Models.InfoONarocilu", b =>
-                {
-                    b.Property<int>("InfoONarociluId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InfoONarociluId"), 1L, 1);
-
-                    b.Property<int>("ArtikelId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Cena")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Kolicina")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NarociloId")
-                        .HasColumnType("int");
-
-                    b.HasKey("InfoONarociluId");
-
-                    b.HasIndex("ArtikelId");
-
-                    b.HasIndex("NarociloId");
-
-                    b.ToTable("InfoONarocilu", (string)null);
-                });
-
             modelBuilder.Entity("SeminarskaNaloga.Models.Kosarica", b =>
                 {
                     b.Property<string>("KosaricaId")
@@ -339,44 +312,22 @@ namespace web.Migrations
                     b.ToTable("Kosarica", (string)null);
                 });
 
-            modelBuilder.Entity("SeminarskaNaloga.Models.Narocilo", b =>
+            modelBuilder.Entity("SeminarskaNaloga.Models.Lastnik", b =>
                 {
-                    b.Property<int>("NarociloId")
+                    b.Property<int>("LastnikId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NarociloId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LastnikId"), 1L, 1);
 
-                    b.Property<DateTime>("datumNarocila")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("enaslov")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("kraj")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("naslov")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("posta")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("priimek")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("telefon")
+                    b.Property<int?>("TrgovinaId")
                         .HasColumnType("int");
 
-                    b.Property<double>("vrednostNarocila")
-                        .HasColumnType("float");
+                    b.HasKey("LastnikId");
 
-                    b.HasKey("NarociloId");
+                    b.HasIndex("TrgovinaId");
 
-                    b.ToTable("Narocilo", (string)null);
+                    b.ToTable("Lastnik", (string)null);
                 });
 
             modelBuilder.Entity("SeminarskaNaloga.Models.Trgovina", b =>
@@ -478,33 +429,18 @@ namespace web.Migrations
                     b.Navigation("ArtikelKosare");
                 });
 
-            modelBuilder.Entity("SeminarskaNaloga.Models.InfoONarocilu", b =>
+            modelBuilder.Entity("SeminarskaNaloga.Models.Lastnik", b =>
                 {
-                    b.HasOne("SeminarskaNaloga.Models.Artikel", "Artikel")
+                    b.HasOne("SeminarskaNaloga.Models.Trgovina", "Trgovina")
                         .WithMany()
-                        .HasForeignKey("ArtikelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TrgovinaId");
 
-                    b.HasOne("SeminarskaNaloga.Models.Narocilo", "Narocilo")
-                        .WithMany("VrsticeNarocila")
-                        .HasForeignKey("NarociloId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Artikel");
-
-                    b.Navigation("Narocilo");
+                    b.Navigation("Trgovina");
                 });
 
             modelBuilder.Entity("SeminarskaNaloga.Models.Kosarica", b =>
                 {
                     b.Navigation("ArtikliKosarice");
-                });
-
-            modelBuilder.Entity("SeminarskaNaloga.Models.Narocilo", b =>
-                {
-                    b.Navigation("VrsticeNarocila");
                 });
 
             modelBuilder.Entity("SeminarskaNaloga.Models.Trgovina", b =>

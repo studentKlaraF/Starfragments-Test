@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SeminarskaNaloga.Data;
 using SeminarskaNaloga.Models;
+using SeminarskaNaloga.Data.interfaces;
 using Microsoft.AspNetCore.Identity;
 
 namespace SeminarskaNaloga.Controllers
@@ -16,11 +17,13 @@ namespace SeminarskaNaloga.Controllers
     {
         private readonly TrgovinaContext _context;
         private readonly UserManager<AppUser> _usermanager;
+        private readonly IArtikelRepository _artikelRepository;
 
-        public ArtikelController(TrgovinaContext context, UserManager<AppUser> userManager)
+        public ArtikelController(TrgovinaContext context, UserManager<AppUser> userManager,IArtikelRepository artikelRepository)
         {
             _context = context;
             _usermanager = userManager;
+            _artikelRepository = artikelRepository;
         }
 
         // GET: Artikel

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SeminarskaNaloga.Data;
 
@@ -11,9 +12,10 @@ using SeminarskaNaloga.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(TrgovinaContext))]
-    partial class TrgovinaContextModelSnapshot : ModelSnapshot
+    [Migration("20230108220117_Narocilo")]
+    partial class Narocilo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -347,16 +349,10 @@ namespace web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NarociloId"), 1L, 1);
 
-                    b.Property<DateTime>("datumNarocila")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("enaslov")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("kraj")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("naslov")
@@ -367,9 +363,6 @@ namespace web.Migrations
 
                     b.Property<string>("priimek")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("telefon")
-                        .HasColumnType("int");
 
                     b.Property<double>("vrednostNarocila")
                         .HasColumnType("float");

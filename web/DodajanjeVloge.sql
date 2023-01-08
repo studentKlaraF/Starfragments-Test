@@ -1,2 +1,2 @@
 INSERT INTO dbo.AspNetUserRoles(UserId,RoleId)
-VALUES ('c7427569-91e6-402c-b0cc-2a5c84fad512',2)
+VALUES ('44a0ea9c-a0d7-4cbe-818b-fd15b8ae9e25',2)

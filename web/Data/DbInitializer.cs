@@ -45,6 +45,17 @@ namespace SeminarskaNaloga.Data
             context.Artikel.AddRange(artikli);
             context.SaveChanges();
 
+
+            var roles = new IdentityRole[] {
+                new IdentityRole{Id="1", Name="Admin"},
+                new IdentityRole{Id="2", Name="Lastnik"}
+            };
+
+            foreach (IdentityRole r in roles)
+            {
+                context.Roles.Add(r);
+            }
+
             var user = new AppUser
             {
                 ime = "Bob",

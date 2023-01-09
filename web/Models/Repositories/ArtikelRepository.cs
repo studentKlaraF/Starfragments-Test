@@ -18,9 +18,6 @@ namespace SeminarskaNaloga.Data.Repositories
 
         public IEnumerable<Artikel> Artikli => _context.Artikel;
 
-        public Artikel getArtikelById(int ArtikelId)
-        {
-            return _context.Artikel.FirstOrDefault(p => p.ArtikelId == ArtikelId);
-        }
+        public Artikel getArtikelById(int ArtikelId) => _context.Artikel.FirstOrDefault(p => p.ArtikelId == ArtikelId);
     }
 }

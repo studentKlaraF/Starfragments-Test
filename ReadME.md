@@ -7,6 +7,9 @@ Naslov seminarske naloge: Spletna trgovina - Starfragments
 ![image](https://user-images.githubusercontent.com/97111898/211497322-a0698bd6-204a-4a3d-86b7-5de531da73b6.png)
 Začetna stran spletne aplikacije
 
+![image](https://user-images.githubusercontent.com/97111898/211515310-9b67ce89-72de-4572-ae39-951f5a6be662.png)
+
+
 V aplikaciji imamo dve različne vrste uporabniških vlog in sicer, Admin in Lastnik.
 
 V aplikaciji je možno ustvarjanje svoje trgovine (omejeno na eno na račun) - to lahko storijo vsi tudi tisti, ki nimajo nobenih vlog. Trgovine se lahko ureja, pogleda njihove podrobnosti in jih izbriše - to lahko delajo Admini in Lastniki.

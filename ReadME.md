@@ -2,6 +2,7 @@ Naslov seminarske naloge: Spletna trgovina - Starfragments
 
 Člana ekipe:
 63210063 Klara Fajdiga
+
 63200098 Urška Glavan
 
 ![image](https://user-images.githubusercontent.com/97111898/211497322-a0698bd6-204a-4a3d-86b7-5de531da73b6.png)

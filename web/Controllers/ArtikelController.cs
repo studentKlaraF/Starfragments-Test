@@ -33,7 +33,6 @@ namespace SeminarskaNaloga.Controllers
         }
 
         // GET: Artikel/Details/5
-        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Artikel == null)
@@ -51,14 +50,14 @@ namespace SeminarskaNaloga.Controllers
             return View(artikel);
         }
         
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ForAdmin()
         {
             return View(await _context.Artikel.ToListAsync());
         }
 
         // GET: Artikel/Create
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public IActionResult Create()
         {
             return View();
@@ -69,7 +68,7 @@ namespace SeminarskaNaloga.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public async Task<IActionResult> Create([Bind("img,naziv,cena,opis")] Artikel artikel)
         {   
             var trenutniUporabnik = await _usermanager.GetUserAsync(User); //zapiše kdo je prijavljen v aplikacijo
@@ -87,7 +86,7 @@ namespace SeminarskaNaloga.Controllers
         }
 
         // GET: Artikel/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Artikel == null)
@@ -108,7 +107,7 @@ namespace SeminarskaNaloga.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public async Task<IActionResult> Edit(int id, [Bind("ArtikelId,img,naziv,cena,opis")] Artikel artikel)
         {
             if (id != artikel.ArtikelId)
@@ -140,7 +139,7 @@ namespace SeminarskaNaloga.Controllers
         }
 
         // GET: Artikel/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Artikel == null)
@@ -161,7 +160,7 @@ namespace SeminarskaNaloga.Controllers
         // POST: Artikel/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Artikel == null)

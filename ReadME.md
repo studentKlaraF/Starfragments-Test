@@ -7,8 +7,11 @@ Naslov seminarske naloge: Spletna trgovina - Starfragments
 ![image](https://user-images.githubusercontent.com/97111898/211497322-a0698bd6-204a-4a3d-86b7-5de531da73b6.png)
 Začetna stran spletne aplikacije
 
-![image](https://user-images.githubusercontent.com/97111898/211515310-9b67ce89-72de-4572-ae39-951f5a6be662.png)
+![image](https://user-images.githubusercontent.com/97111898/211517321-4f56efac-596c-4855-9867-059e947b22fe.png)
+Stran artiklov
 
+![image](https://user-images.githubusercontent.com/97111898/211519987-70fabe96-0aa6-4156-b452-4a1446c66780.png)
+Stran rrgovin
 
 V aplikaciji imamo dve različne vrste uporabniških vlog in sicer, Admin in Lastnik.
 

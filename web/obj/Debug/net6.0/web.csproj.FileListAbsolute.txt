@@ -276,3 +276,7 @@ C:\Users\fajdi\Desktop\Starfragments-Test\web\obj\Debug\net6.0\refint\web.dll
 C:\Users\fajdi\Desktop\Starfragments-Test\web\obj\Debug\net6.0\web.pdb
 C:\Users\fajdi\Desktop\Starfragments-Test\web\obj\Debug\net6.0\web.genruntimeconfig.cache
 C:\Users\fajdi\Desktop\Starfragments-Test\web\obj\Debug\net6.0\ref\web.dll
+C:\Users\fajdi\Desktop\Starfragments-Test\web\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\fajdi\Desktop\Starfragments-Test\web\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\fajdi\Desktop\Starfragments-Test\web\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\fajdi\Desktop\Starfragments-Test\web\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll

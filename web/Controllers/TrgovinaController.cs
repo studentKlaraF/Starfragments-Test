@@ -55,7 +55,7 @@ namespace SeminarskaNaloga.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admim")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ForAdmin()
         {
             return View(await _context.Trgovina.ToListAsync());

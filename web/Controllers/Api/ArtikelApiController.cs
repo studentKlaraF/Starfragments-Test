@@ -10,7 +10,7 @@ using SeminarskaNaloga.Models;
 
 namespace web.Controllers_Api
 {
-    [Route("api/v1/Artikel")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ArtikelApiController : ControllerBase
     {

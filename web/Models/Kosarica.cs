@@ -15,6 +15,7 @@ public class Kosarica
     }
 
     public string KosaricaId { get; set; }
+
     public List<ArtikelKosarice> ArtikliKosarice { get; set; }
 
     public static Kosarica GetKosarica(IServiceProvider services){

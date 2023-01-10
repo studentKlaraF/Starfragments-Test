@@ -3,9 +3,9 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
-<ul class="navbar-nav">
+<ul class="navbar-nav" style="padding:2%;">
 @if (SignInManager.IsSignedIn(User))
-{
+{   <div style="display: inline-block;">
     <li class="nav-item" style="float: right;">
         <a id="manage" class="nav-link textLoginReg" style="color:white;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
     </li>
@@ -14,14 +14,16 @@
             <button id="logout" type="submit" style="color:white;" class="nav-link btn btn-link textLoginReg">Logout</button>
         </form>
     </li>
+    </div>
 }
 else
-{
+{   <div style="display: inline-block;padding:2%;">
     <li class="nav-item">
         <a class="nav-link textLoginReg" style="color:white;" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">
         <a class="nav-link textLoginReg" style="color:white;" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
+    </div>
 }
 </ul>

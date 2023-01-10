@@ -19,9 +19,9 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr style="padding: 2%;">
                         <td class="align-middle">
-                            <img class="rounded-square" src="@item.img" alt="@item.ime" style="max-width: 150px;"/>
+                            <img class="rounded-circle" src="@item.img" alt="@item.ime" style="max-width: 150px;"/>
                         </td>
                         <td class="align-middle">
                             @Html.DisplayFor(modelItem =>item.ime)

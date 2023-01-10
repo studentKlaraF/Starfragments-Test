@@ -31,6 +31,10 @@ builder.Services.AddSession();
 builder.Services.AddDbContext<TrgovinaContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddSwaggerGen();
+
+
+
 var app = builder.Build();
 
 CreateDbIfNotExists(app);
@@ -45,15 +49,26 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API");
+});
+
 app.UseRouting();
 app.UseAuthentication();
 app.MapRazorPages();
 app.UseAuthorization();
 app.UseSession();
 
+
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 app.Run();
 

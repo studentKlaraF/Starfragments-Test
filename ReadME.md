@@ -11,7 +11,7 @@ Začetna stran spletne aplikacije
 Stran artiklov
 
 ![image](https://user-images.githubusercontent.com/97111898/211519987-70fabe96-0aa6-4156-b452-4a1446c66780.png)
-Stran rrgovin
+Stran trgovin
 
 V aplikaciji imamo dve različne vrste uporabniških vlog in sicer, Admin in Lastnik.
 
@@ -21,6 +21,10 @@ Uporabnik, ki je lastnik lahko doda artikle in jih ureja. Uporabnik, ki je admin
 Navaden uporabnik lahko pogleda podrobnosti izdelka in jih naroči(spletna stran jih preusmeri na mail preko katerga se naročujejo izdelke).
 
 Aplikacija tudi omogoča ustvarjanje računa, prijavo, urejanje računa in odjavo.
+
+Razdelitev vlog :
+- Klara : delo na aplikaciji in podatkovni bazi
+- Urška : delo na api in android aplikaciji
 
 ![image](https://user-images.githubusercontent.com/97111898/211507847-5a42a97f-b358-4aad-973e-b02f2cf4bf87.png)
 Baza

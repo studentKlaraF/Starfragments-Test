@@ -14,7 +14,6 @@ public class Kosarica
         _appDbContext = appDbContext;
     }
 
-    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public string KosaricaId { get; set; }
     public List<ArtikelKosarice> ArtikliKosarice { get; set; }
 
@@ -30,7 +29,7 @@ public class Kosarica
         return new Kosarica(context){KosaricaId = kosaraId};
     }
 
-    public void dodaj(Artikel artikel, int kolicina)
+    public void dodajVKosarico(Artikel artikel, int kolicina)
     {
         var ArtikelKosarice = _appDbContext.ArtikelKosarice.SingleOrDefault(
             s => s.ArtikelKosare.ArtikelId == artikel.ArtikelId && s.KosaricaId == KosaricaId
@@ -54,7 +53,7 @@ public class Kosarica
         _appDbContext.SaveChanges();
     }
 
-    public int odstrani(Artikel artikel)
+    public int odstraniIzKosarice(Artikel artikel)
     {
         var ArtikelKosarice = _appDbContext.ArtikelKosarice.SingleOrDefault(
             s => s.ArtikelKosare.ArtikelId == artikel.ArtikelId && s.KosaricaId == KosaricaId
@@ -80,7 +79,7 @@ public class Kosarica
         return localAmount;
     }
 
-    public List<ArtikelKosarice> getArtikelKosarice()
+    public List<ArtikelKosarice> getArtikliKosarice()
     {
         return ArtikliKosarice ??
                (ArtikliKosarice =

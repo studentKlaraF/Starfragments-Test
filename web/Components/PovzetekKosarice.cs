@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SeminarskaNaloga.Models;
+using SeminarskaNaloga.ViewModels;
 
 namespace SeminarskaNaloga.Components
 {
@@ -17,7 +18,7 @@ namespace SeminarskaNaloga.Components
 
         public IViewComponentResult Invoke()
         {
-            var izdelki = _kosarica.getArtikelKosarice();
+            var izdelki = _kosarica.getArtikliKosarice();
             _kosarica.ArtikliKosarice = izdelki;
 
             var KosaricaViewmod = new KosaricaViewModel

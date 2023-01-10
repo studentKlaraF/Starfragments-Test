@@ -2,20 +2,20 @@
 using SeminarskaNaloga.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
-
+using SeminarskaNaloga.Data.interfaces;
 namespace SeminarskaNaloga.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IArtikelRepository _artikelRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IArtikelRepository artikelRepository)
         {
-            _logger = logger;
+            _artikelRepository = artikelRepository;
         }
 
         public IActionResult Index()
-        {
+        {   
             return View();
         }
 

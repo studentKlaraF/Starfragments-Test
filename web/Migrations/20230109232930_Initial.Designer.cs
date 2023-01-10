@@ -12,8 +12,8 @@ using SeminarskaNaloga.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(TrgovinaContext))]
-    [Migration("20230108223023_Narocilo2")]
-    partial class Narocilo2
+    [Migration("20230109232930_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -282,7 +282,10 @@ namespace web.Migrations
             modelBuilder.Entity("SeminarskaNaloga.Models.ArtikelKosarice", b =>
                 {
                     b.Property<int>("ArtikelKosariceId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArtikelKosariceId"), 1L, 1);
 
                     b.Property<int?>("ArtikelKosareArtikelId")
                         .HasColumnType("int");

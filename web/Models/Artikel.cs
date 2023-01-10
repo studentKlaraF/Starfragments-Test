@@ -20,5 +20,6 @@ public class Artikel
 	public string opis { get; set; }
 	[Display(Name="Trgovina")]
 	public string trgovina { get; set; }
+	#nullable enable
 	public AppUser? lastnik { get; set; }
 }

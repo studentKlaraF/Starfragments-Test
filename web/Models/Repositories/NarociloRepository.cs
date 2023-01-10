@@ -23,7 +23,7 @@ namespace SeminarskaNaloga.Data.Repositories
             narocilo.datumNarocila = DateTime.Now;
             _context.Narocilo.Add(narocilo);
 
-            var kosaricaArtikli = _kosarica.getArtikelKosarice();
+            var kosaricaArtikli = _kosarica.getArtikliKosarice();
             foreach (var items in kosaricaArtikli)
             {
                 var NarociloInfo = new InfoONarocilu()

@@ -10,6 +10,7 @@ using SeminarskaNaloga.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using SeminarskaNaloga.Data.interfaces;
+using SeminarskaNaloga.ViewModels;
 
 namespace SeminarskaNaloga.Controllers
 {   
@@ -26,7 +27,7 @@ namespace SeminarskaNaloga.Controllers
         }
 
         public ViewResult Index(){
-            var izdelki = _kosarica.getArtikelKosarice();
+            var izdelki = _kosarica.getArtikliKosarice();
             _kosarica.ArtikliKosarice = izdelki;
 
             var kosaricaView   = new KosaricaViewModel{
@@ -40,7 +41,7 @@ namespace SeminarskaNaloga.Controllers
         public RedirectToActionResult dodajVKosarico(int ArtikelId){
             var izberiArtikel = _ArtikelRepository.Artikli.FirstOrDefault(p => p.ArtikelId == ArtikelId);
             if(izberiArtikel != null){
-                _kosarica.dodaj(izberiArtikel, 1);
+                _kosarica.dodajVKosarico(izberiArtikel, 1);
             }
             return RedirectToAction("Index");
         }
@@ -48,7 +49,7 @@ namespace SeminarskaNaloga.Controllers
         public RedirectToActionResult odstraniIzKosarice(int ArtikelId){
             var izberiArtikel = _ArtikelRepository.Artikli.FirstOrDefault(p => p.ArtikelId == ArtikelId);
             if(izberiArtikel != null){
-                _kosarica.odstrani(izberiArtikel);
+                _kosarica.odstraniIzKosarice(izberiArtikel);
             }
             return RedirectToAction("Index");
     }

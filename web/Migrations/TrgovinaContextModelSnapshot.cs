@@ -280,7 +280,10 @@ namespace web.Migrations
             modelBuilder.Entity("SeminarskaNaloga.Models.ArtikelKosarice", b =>
                 {
                     b.Property<int>("ArtikelKosariceId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArtikelKosariceId"), 1L, 1);
 
                     b.Property<int?>("ArtikelKosareArtikelId")
                         .HasColumnType("int");

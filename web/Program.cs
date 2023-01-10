@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("Azure");
 
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<TrgovinaContext>();
@@ -19,7 +20,6 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 builder.Services.AddScoped<IArtikelRepository, ArtikelRepository>();
-
 builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
 builder.Services.AddScoped(Sp => Kosarica.GetKosarica(Sp));
 

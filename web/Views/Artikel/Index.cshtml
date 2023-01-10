@@ -5,142 +5,15 @@
 }
 
 <div class="row">
-    @foreach (var item in Model)
+    @if(User.IsInRole("Lastnik"))
     {
-        <div class="col-md-4 col-xs-6 border-primary mb-3">
-            <div class="card mb-3" style="max-width: 540px">
-                <div class="row g-0">
-                    <div class="col-md-12">
-                        <div class="card-header text-white" style="background-color: #530961;">
-                            <p class="card-text">
-                                <h5 class="card-title">
-                                    @item.naziv
-                                    @if (User.IsInRole("Admin"))
-                                    {
-                                        <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.ArtikelId"><i class="bi bi-pencil-square"></i></a>
-                                    }
-                                </h5>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <img src="@item.img" width="100%" alt="@item.naziv">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <p class="card-text"><b>Opis: </b>@item.opis</p>
-                            <p class="card-text"><b>Cena: </b>@item.cena.ToString("c")</p>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card-footer ">
-                            <p class="card-text">
-                                <a class="btn btn-outline-primary float-right" style="background-color:#f8adc4;border-color:#f8adc4;color:#530961" asp-action="Details" asp-route-id="@item.ArtikelId">
-                                    <i class="bi bi-eye-fill"></i> Podrobnosti
-                                </a>
-                                <a class="btn btn-success text-white" 
-                                   asp-controller="Kosarica" 
-                                   asp-action="dodajVKosarico" 
-                                   asp-route-artiekId="@item.ArtikelId"
-                                    style="background-color: #530961;border-color:#530961;float:right">
-                                <i class="bi bi-cart-plus" ></i> Dodaj v košarico </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="text-white" style="padding:1%;">
+            <a asp-controller="Artikel" asp-action="Create" class="btn btn-success" style="background-color: #530961;border-color:#530961"> <i>Dodaj nov artikel</i></a>
         </div>
+    }
+    @foreach (Artikel artikel in Model)
+    {
+        @Html.Partial("ArtikelSummary",artikel)
     }
 </div>
 
-<!--
-<div class="row">
-    <div class="col-md-8 offset-md-2">
-        <h1>Izdelki na voljo</h1>
-        <table class="table">
-            <thead>
-                <tr class="text-center">
-                    <th>@Html.DisplayNameFor(model =>model.img)</th>
-                    <th>@Html.DisplayNameFor(model =>model.naziv)</th>
-                    <th>@Html.DisplayNameFor(model =>model.cena)</th>
-                    <th>@Html.DisplayNameFor(model =>model.opis)</th>
-                    <th>Urejanje</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td class="align-middle">
-                            <img class="rounded-square" src="@item.img" alt="@item.naziv" style="max-width: 150px;"/>
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem =>item.naziv)
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem =>item.cena) €
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem =>item.opis)
-                        </td>
-                        <td class="align-middle">
-                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square">Uredi</i></a>
-                            <a class="btn btn-outline-info"><i class="bi bi-eye">Podrobnosti</i></a>
-                            <a class="btn btn-danger"><i class="bi bi-trash">Izbriši</i></a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div> -->
-
-
-
-
-<!--
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.img)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.naziv)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cena)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.opis)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.img)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.naziv)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cena)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.opis)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ArtikelId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ArtikelId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ArtikelId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table> -->

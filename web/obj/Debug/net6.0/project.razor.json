@@ -16419,11 +16419,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\fajdi\\Desktop\\Starfragments-Test\\web\\Views\\Trgovina\\AlreadyExsists.cshtml",
-      "TargetPath": "Views\\Trgovina\\AlreadyExsists.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\fajdi\\Desktop\\Starfragments-Test\\web\\Views\\Trgovina\\Edit.cshtml",
       "TargetPath": "Views\\Trgovina\\Edit.cshtml",
       "FileKind": "mvc"

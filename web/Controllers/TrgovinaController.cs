@@ -49,13 +49,13 @@ namespace SeminarskaNaloga.Controllers
         }
 
         // GET: Trgovina/Create
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admim")]
         public async Task<IActionResult> ForAdmin()
         {
             return View(await _context.Trgovina.ToListAsync());
@@ -66,7 +66,7 @@ namespace SeminarskaNaloga.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public async Task<IActionResult> Create([Bind("img,ime")] Trgovina trgovina)
         {   
             var trenutniUporabnik = await _usermanager.GetUserAsync(User); //zapiše kdo je prijavljen v aplikacijo
@@ -84,6 +84,7 @@ namespace SeminarskaNaloga.Controllers
         }
 
         // GET: Trgovina/Edit/5
+        [Authorize(Roles = "Admin, Lastnik")]
         public async Task<IActionResult> Edit(int? id)
         {   var trenutniUporabnik = await _usermanager.GetUserAsync(User); //zapiše kdo je prijavljen v aplikacijo
             if (trenutniUporabnik.TrgovinaId==id && (id == null || _context.Trgovina == null))
@@ -104,7 +105,7 @@ namespace SeminarskaNaloga.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public async Task<IActionResult> Edit(int id, [Bind("TrgovinaId,img,ime")] Trgovina trgovina)
         {
             if (id != trgovina.TrgovinaId)
@@ -136,7 +137,7 @@ namespace SeminarskaNaloga.Controllers
         }
 
         // GET: Trgovina/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Trgovina == null)
@@ -158,7 +159,7 @@ namespace SeminarskaNaloga.Controllers
         
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "Admin, Lastnik")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Trgovina == null)

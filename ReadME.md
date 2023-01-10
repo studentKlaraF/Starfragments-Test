@@ -7,18 +7,23 @@ Naslov seminarske naloge: Spletna trgovina - Starfragments
 63200098 Urška Glavan
 
 ![image](https://user-images.githubusercontent.com/97111898/211497322-a0698bd6-204a-4a3d-86b7-5de531da73b6.png)
+
 Začetna stran spletne aplikacije
 
 ![image](https://user-images.githubusercontent.com/97111898/211517321-4f56efac-596c-4855-9867-059e947b22fe.png)
+
 Stran artiklov
 
 ![image](https://user-images.githubusercontent.com/97111898/211519987-70fabe96-0aa6-4156-b452-4a1446c66780.png)
+
 Stran trgovin
 
 ![image](https://user-images.githubusercontent.com/97111898/211673332-f4cf4119-64b0-49a2-91b0-bd9438eac1bc.png)
+
 Izpis v android aplikaciji
 
 ![image](https://user-images.githubusercontent.com/97111898/211673827-2c7af886-dcf5-4a1f-9944-ebbfa0e776c8.png)
+
 Primer vnosa v android aplikaciji
 
 V aplikaciji imamo dve različne vrste uporabniških vlog in sicer, Admin in Lastnik.

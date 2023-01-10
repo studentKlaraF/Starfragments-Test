@@ -32,13 +32,16 @@
                                 <a class="btn btn-outline-primary float-right" style="background-color:#f8adc4;border-color:#f8adc4;color:#530961" asp-action="Details" asp-route-id="@Model.ArtikelId">
                                     <i class="bi bi-eye-fill"></i> Podrobnosti
                                 </a>
-                                    <a class="btn btn-success text-white" 
+                                <a class="btn btn-success text-white" href = "mailto:kf6269@student.uni-lj.si?subject=Narocilo @Model.naziv @Model.ArtikelId&body=Naročilo : Navedite količino in svoj naslov"
+                                    style="background-color: #530961;border-color:#530961;float:right">
+                                    <i class="bi bi-cart-plus" ></i> Naroči </a>
+                                    <!-- <a class="btn btn-success text-white" 
                                     id="cartButton"
                                     asp-controller="Kosarica" 
                                     asp-action="dodajVKosarico" 
                                     asp-route-ArtikelId="@Model.ArtikelId"
                                     style="background-color: #530961;border-color:#530961;float:right">
-                                    <i class="bi bi-cart-plus" ></i> Dodaj v košarico </a>
+                                    <i class="bi bi-cart-plus" ></i> Dodaj v košarico </a> -->
                             </p>
                         </div>
                     </div>

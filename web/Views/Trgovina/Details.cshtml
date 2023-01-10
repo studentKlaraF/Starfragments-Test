@@ -25,6 +25,9 @@
         </div>
     </dl>
 <div>
+
+</div>    
+<div>
     @if(User.IsInRole("Lastnik") || User.IsInRole("Admin"))
     {
     <a asp-action="Edit" asp-route-id="@Model?.TrgovinaId">Edit</a>

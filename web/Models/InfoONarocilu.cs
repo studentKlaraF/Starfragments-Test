@@ -9,7 +9,6 @@ namespace SeminarskaNaloga.Models
 {
     public class InfoONarocilu
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int InfoONarociluId { get; set; }
         public int NarociloId { get; set; } 
         public int ArtikelId { get; set; }

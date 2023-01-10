@@ -9,7 +9,6 @@ namespace SeminarskaNaloga.Models
 {
     public class Narocilo
     {   
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NarociloId { get; set; }
         public List<InfoONarocilu> VrsticeNarocila { get; set; }
         public string ime { get; set; }
